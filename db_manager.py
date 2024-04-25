@@ -49,16 +49,30 @@ def create_empty_csv(file_name, column_names):
 
 
 def populate_csv(data):
+    # Conta il numero di elementi prima dell'aggiunta dei nuovi dati
+    before_count = 0
+    with open('Mars_crater_db_images.csv', 'r') as f:
+        before_count = sum(1 for line in f) - 1  # Sottrai 1 per l'intestazione
+
     existing_ids = set()
     with open('Mars_crater_db_images.csv', 'r') as f:
         reader = csv.reader(f)
         next(reader)  # Salta l'intestazione
         for row in reader:
-            existing_ids.add((row[0]))  # Assume che l'ID sia il primo elemento di ogni riga
+            existing_ids.add(row[0])  # Assume che l'ID sia il primo elemento di ogni riga
 
     with open('Mars_crater_db_images.csv', 'a', newline='') as f:
         writer = csv.writer(f)
+        added_count = 0  # Conta il numero di nuovi elementi aggiunti
         for id, image in data:
             if id not in existing_ids:
                 writer.writerow([id, image])
                 existing_ids.add(id)
+                added_count += 1
+
+    # Conta il numero di elementi dopo l'aggiunta dei nuovi dati
+    after_count = 0
+    with open('Mars_crater_db_images.csv', 'r') as f:
+        after_count = sum(1 for line in f) - 1  # Sottrai 1 per l'intestazione
+
+    print(f"Added {added_count} new entries. Total entries: {after_count} (before: {before_count})")
