@@ -10,26 +10,16 @@ df = df[['CRATER_ID', 'LATITUDE_CIRCLE_IMAGE', 'LONGITUDE_CIRCLE_IMAGE', 'DIAM_C
 df.columns = ['id', 'lat', 'lon', 'diam', 'depth']
 
 #funzione che filtra i crateri in base alla latitudine massima e minima passati per parametro
-def filter_lat(lat_min, lat_max):
-    return df[(df['lat'] >= lat_min) & (df['lat'] <= lat_max)]
+def filter_lat(db,lat_min, lat_max):
+    return db[(db['lat'] >= lat_min) & (db['lat'] <= lat_max)]
 
 #funzione che filtra i crateri in base alla longitudine massima e minima passati per parametro
 def filter_lon(lon_min, lon_max):
     return df[(df['lon'] >= lon_min) & (df['lon'] <= lon_max)]
 
-#creo un database con i crateri che hanno una latitudine compresa tra -30 e 30
-df_filtered = filter_lat(-45, 45)
-#filtro anche per la longitudine
-#df_filtered = filter_lon(-30, 30)
-
-
-#stampo le prime 5 righe del database filtrato
-print(df_filtered.head())
-#stampo la dimensione del database filtrato
-print(df_filtered.shape)
-
-#salvo il database filtrato in un nuovo csv
-df_filtered.to_csv('Mars_crater_db_filtered.csv', index=False)
+#funzione che filtra i crateri in base al diametro minimo
+def filter_diam(db,diam_min):
+    return db[(db['diam'] >= diam_min)]
 
 
 def create_empty_csv(file_name, column_names):
