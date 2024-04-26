@@ -1,5 +1,6 @@
 import pandas as pd
 import csv
+import os
 #importo il csv in un dataframe
 df = pd.read_csv('Mars_crater_db_complete.csv')
 
@@ -73,6 +74,35 @@ def populate_csv(data):
     # Conta il numero di elementi dopo l'aggiunta dei nuovi dati
     after_count = 0
     with open('Mars_crater_db_images.csv', 'r') as f:
+        after_count = sum(1 for line in f) - 1  # Sottrai 1 per l'intestazione
+
+    print(f"Added {added_count} new entries. Total entries: {after_count} (before: {before_count})")
+
+
+def populate_tiles_csv(data):
+    before_count = 0
+    with open('Tiles_images_db.csv', 'r') as f:
+        before_count = sum(1 for line in f) - 1  # Sottrai 1 per l'intestazione
+
+    existing_tiles = set()
+    with open('Tiles_images_db.csv', 'r') as f:
+        reader = csv.reader(f)
+        next(reader)  # Salta l'intestazione
+        for row in reader:
+            existing_tiles.add((row[0], row[1]))  #aggiungo le coppie (riga,colonna)
+
+    with open('Tiles_images_db.csv', 'a', newline='') as f:
+        writer = csv.writer(f)
+        added_count = 0  # Conta il numero di nuovi elementi aggiunti
+        for tile_row, tile_col, image in data:
+            if (tile_row, tile_col) not in existing_tiles:
+                writer.writerow([tile_row, tile_col, image])
+                existing_tiles.add((tile_row, tile_col))
+                added_count += 1
+
+    # Conta il numero di elementi dopo l'aggiunta dei nuovi dati
+    after_count = 0
+    with open('Tiles_images_db.csv', 'r') as f:
         after_count = sum(1 for line in f) - 1  # Sottrai 1 per l'intestazione
 
     print(f"Added {added_count} new entries. Total entries: {after_count} (before: {before_count})")
