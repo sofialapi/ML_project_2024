@@ -18,9 +18,9 @@ def filter_lon(lon_min, lon_max):
     return df[(df['lon'] >= lon_min) & (df['lon'] <= lon_max)]
 
 #creo un database con i crateri che hanno una latitudine compresa tra -30 e 30
-df_filtered = filter_lat(-30, 30)
+df_filtered = filter_lat(-45, 45)
 #filtro anche per la longitudine
-df_filtered = filter_lon(-30, 30)
+#df_filtered = filter_lon(-30, 30)
 
 
 #stampo le prime 5 righe del database filtrato
