@@ -1,7 +1,7 @@
 import pandas as pd
 import csv
 #importo il csv in un dataframe
-df = pd.read_csv('Mars_crater_db_complete.csv')
+df = pd.read_csv('vecchia roba/Mars_crater_db_complete.csv')
 
 #Creo un nuovo dataframe con solo le colonne di interesse
 df = df[['CRATER_ID', 'LATITUDE_CIRCLE_IMAGE', 'LONGITUDE_CIRCLE_IMAGE', 'DIAM_CIRCLE_IMAGE', 'DEPTH_RIMFLOOR_TOPOG']]
@@ -14,8 +14,8 @@ def filter_lat(db,lat_min, lat_max):
     return db[(db['lat'] >= lat_min) & (db['lat'] <= lat_max)]
 
 #funzione che filtra i crateri in base alla longitudine massima e minima passati per parametro
-def filter_lon(lon_min, lon_max):
-    return df[(df['lon'] >= lon_min) & (df['lon'] <= lon_max)]
+def filter_lon(db,lon_min, lon_max):
+    return db[(db['lon'] >= lon_min) & (db['lon'] <= lon_max)]
 
 #funzione che filtra i crateri in base al diametro minimo
 def filter_diam(db,diam_min):

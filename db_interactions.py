@@ -31,9 +31,9 @@ def estrai_sotto_matrice(n, m, l, nome_db="matrice_pixel.db"):
     rows = cur.fetchall()
 
     # Debugging: log the fetched rows
-    print("Numero di righe estratte:", len(rows))
-    if len(rows) > 0:
-        print("Prime 10 righe estratte:", rows[:10])  # Log only the first 10 rows for brevity
+  #  print("Numero di righe estratte:", len(rows))
+  #  if len(rows) > 0:
+  #      print("Prime 10 righe estratte:", rows[:10])  # Log only the first 10 rows for brevity
 
     for row in rows:
         try:
