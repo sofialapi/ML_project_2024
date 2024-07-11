@@ -1,2 +1,2 @@
-,id,lat,lon,diam,depth
-9843,17-000138,-22.393,-104.543,10.11,0.89
+Unnamed: 0,id,lat,lon,diam,depth,pixel_x,pixel_y,lato_bb
+9843,17-000138,-22.393,-104.543,10.11,0.89,211,501,16

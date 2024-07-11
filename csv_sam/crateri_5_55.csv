@@ -1,2 +1,2 @@
-,id,lat,lon,diam,depth
-7428,14-000331,15.471,132.136,14.75,0.08
+Unnamed: 0,id,lat,lon,diam,depth,pixel_x,pixel_y,lato_bb
+7428,14-000331,15.471,132.136,14.75,0.08,250,127,23
