@@ -1,0 +1,5 @@
+train: dataset/images/train
+val: dataset/images/val
+
+nc: 1  # Numero di classi (1 se solo crateri)
+names: ['crater']  # Nome della classe
